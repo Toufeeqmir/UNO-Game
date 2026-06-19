@@ -43,4 +43,4 @@ export function buildDeck(){
       }
       return false;
  }
- console.log(buildDeck().length);
+//  console.log(buildDeck().length);
