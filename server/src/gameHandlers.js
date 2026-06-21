@@ -1,9 +1,9 @@
 export function registerGameHandlers(socket, io, rooms, broadcastRoomState){
-     socket.on("playCard", (cardId) =>{
+     socket.on("playCard", (cardId, chosenColor) =>{
         const room = rooms.get(socket.data.roomCode);
         if(!room) return;
 
-        const result = room.playCard(socket.id,cardId);
+        const result = room.playCard(socket.id,cardId, chosenColor);
         if(!result.success){
             socket.emit("errorMsg", result.reason);
             return;
@@ -17,7 +17,7 @@ export function registerGameHandlers(socket, io, rooms, broadcastRoomState){
         const room = rooms.get(socket.data.roomCode);
         if(!room) return;
 
-        const result = room.drawCard(socket.Id);
+        const result = room.drawCard(socket.id);
         if(!result.success){
             socket.emit("errorMsg", result.reason);
             return;
